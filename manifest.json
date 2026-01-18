@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "Wait Time Bias Detector",
+  "version": "1.0",
+  "description": "Human factors decision-support tool for wait-time perception bias",
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["wait_time_bias_extension.js"]
+    }
+  ],
+  "host_permissions": ["https://queue-times.com/*"]
+}
