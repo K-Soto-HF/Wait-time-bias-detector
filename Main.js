@@ -5,7 +5,7 @@ Author: Karina Sotolongo
 Focus: Human Factors | UX | Decision Support
 Powered by Queue-Times.com
 
-ALL LOGIC IS INTENTIONALLY CONTAINED IN THIS FILE:
+Logic is in this file, Limited Start:
 - Cognitive bias detection
 - Sentiment analysis
 - Time perception model
@@ -15,11 +15,11 @@ ALL LOGIC IS INTENTIONALLY CONTAINED IN THIS FILE:
 
 
 
-// CONFIGURATION
+// Configuration for API, Host Credit given
 const PARK_ID = 64; // Universal Studios Florida
 const QUEUE_TIMES_API = `https://queue-times.com/parks/${PARK_ID}/queue_times.json`;
 
-// HUMAN FACTORS MODELS
+// Defining Phrases- Negative Rapport
 const BIAS_PHRASES = [
   "felt like forever",
   "took forever",
@@ -38,7 +38,7 @@ const NEGATIVE_WORDS = [
 ];
 
 
-// ANALYSIS FUNCTIONS
+// Analysis Functions 
 function sentimentScore(text) {
   const words = text.toLowerCase().match(/\b\w+\b/g) || [];
   return words.filter(word => NEGATIVE_WORDS.includes(word)).length * -1;
@@ -56,7 +56,7 @@ function estimatePerceivedWait(actualWait, sentiment, biasHits) {
   return Math.round(actualWait * inflation);
 }
 
-// LIVE DATA FETCH
+// Live Data Refresh
 async function fetchQueueTimes() {
   try {
     const response = await fetch(QUEUE_TIMES_API);
@@ -78,7 +78,7 @@ async function fetchQueueTimes() {
   }
 }
 
-// UI OVERLAY (DECISION SUPPORT)
+// UI Overlay (DECISION SUPPORT-Tag Color)
 function createOverlay({ actual, perceived, sentiment, biasHits }) {
   const panel = document.createElement("div");
   panel.style.cssText = `
@@ -127,7 +127,7 @@ function highlightBiasLanguage() {
 }
 
 
-// MAIN EXECUTION
+// Execute test
 (async function runDetector() {
   const pageText = document.body.innerText || "";
 
